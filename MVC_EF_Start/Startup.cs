@@ -24,7 +24,7 @@ namespace MVC_EF_Start
         {
             // Setup EF connection
             // https://stackoverflow.com/a/43098152/1385857
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["Data:IEXTrading:ConnectionString"]));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["Data:ElectionUSA:ConnectionString"]));
 
             // added from MVC template
             //services.AddMvc();

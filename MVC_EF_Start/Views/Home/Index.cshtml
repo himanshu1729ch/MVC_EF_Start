@@ -1,15 +1,78 @@
-﻿@{
+﻿
+@{
     Layout = null;
 }
 
 <!DOCTYPE html>
 
 <html>
+
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' href='css/index.css'>
+
+    <title>US Election Insights</title>
+    <link rel="shortcut icon" type="image/jpg" href="Favicon.jpg" />
+    <script type="text/javascript" src="js/index.js"></script>
 </head>
+
 <body>
-  <h2>Hello World!</h2>
+    <nav>
+        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        <a href="CandOrCommittee.cshtml">Candidate</a>
+        <a href="Committee.cshtml">Committee</a>
+        <a asp-area="" asp-controller="Home" asp-action="FinancialReport">Financial Report</a>
+        <a href="filing.cshtml">Committee Filings</a>
+        <a href="aboutus.cshtml">About Us</a>
+    </nav>
+    <div class="wrapper">
+
+        <div class="clr"></div>
+        <header class="headerAndInfo">
+            <div class="headerStyle">
+                <div class="ActualTitle"><img src="Favicon.jpg" /> US Election Insights</div>
+            </div>
+
+            <div class="AboutWeb">
+                This Website is created to provide information about the US elections. You can find information about candidates, committees and important dates related to elections.
+                For more information visit <a href="https://www.fec.gov/"> Click here</a>.
+            </div>
+        </header>
+
+        <div id="slider">
+            <ul id="slideWrap">
+                <li><img src="img/img1.png" alt=""></li>
+                <li><img src="img/Slide1.jpg" alt=""></li>
+                <li><img src="img/slide2.jpg" alt=""></li>
+                <li><img src="img/slide3.jpg" alt=""></li>
+                <li><img src="img/slide4.png" alt=""></li>
+            </ul>
+            <a id="prev" href="#">&#8810;</a>
+            <a id="next" href="#">&#8811;</a>
+        </div>
+        <div class="bg-text">
+            <p>
+                The US Election Insights Project is an information source for the United States election system.  The mission of the project is to provide
+                election statistics, various committe's' Financial reports, filing data, and other useful information regarding the United States electoral system. By providing this information,
+                the project seeks to inform the people of the United States on what is the current status of their electoral system. <br /> The project is making use of information from
+                <a href="https://www.fec.gov/">fec.gov</a>
+            </p>
+        </div>
+    </div>
+    <div class="Contact">
+        <ul class="followUS">
+            <li>
+                <a href='https://twitter.com/fec' target='_blank'> <img src='t.png' width='32' height='32'> </a>
+            </li>
+            <li>
+                <a href='https://www.youtube.com/user/FECTube' target='_blank'><img src='y.png' width='32' height='32'></a>
+            </li>
+            <li class="signUp">
+                <a href='https://public.govdelivery.com/accounts/USFEC/subscriber/new?qsp=CODE_RED' target='_blank' style="color:beige">Sign Up for FECEmail</a>
+            </li>
+
+        </ul>
+    </div>
 </body>
 </html>

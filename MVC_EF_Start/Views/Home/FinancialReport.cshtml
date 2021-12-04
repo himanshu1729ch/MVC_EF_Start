@@ -1,0 +1,110 @@
+﻿@{
+    Layout = null;
+}
+
+@model IEnumerable<MVC_EF_Start.Models.Result>
+
+<!DOCTYPE ='html'>
+<html>
+
+<head>
+
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' href='css/FinancialReport.css'>
+
+    <title>US Election Insights</title>
+    <link rel="shortcut icon" type="image/jpg" href="Favicon.jpg" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+    <script type="text/javascript" src="~/js/FinancialReports.js"></script>
+
+</head>
+<body>
+    <nav>
+        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        <a href="CandOrCommittee.cshtml">Candidate</a>
+        <a href="Committee.cshtml">Committee</a>
+        <a asp-area="" asp-controller="Home" asp-action="FinancialReport">Financial Report</a>
+        <a href="filing.cshtml">Committee Filings</a>
+        <a href="aboutus.cshtml">About Us</a>
+    </nav>
+    <div class="wrapper">
+
+        <div class="clr"></div>
+        <header class="headerAndInfo">
+            <div class="headerStyle">
+                <div class="ActualTitle"><img src="Favicon.jpg" /> US Election Insights</div>
+            </div>
+
+            <div class="AboutWeb">
+                This Website is created to provide information about the US elections. You can find information about candidates, committees and important dates related to elections.
+                For more information visit <a href="https://www.fec.gov/"> Click here</a>.
+            </div>
+        </header>
+    </div>
+    <div>
+        <h2 class="FRTitle">Financial Report of committees</h2>
+        <div>
+            <form class="FinancialReport">
+                <h4>Insert Committee ID below. You can get that from the Candidate/Committe page </h4>
+                <div>
+                    <input type="text" name="committeID" placeholder="Committee ID" />
+                    <input type="submit" asp-controller="Home" asp-action="GetFinancialData" value="Get Financial Report" />
+                </div>
+            </form>
+            <table border="1" class="ReportTable">
+                <tr>
+                    <th>Committee Name</th>
+                    <th>State</th>
+                    <th>Cycle</th>
+                    <th>Cash at the Beginning</th>
+                    <th>Net Contribution</th>
+                    <th>Total Loan</th>
+                    <th>Net Operating Expenditure</th>
+                    <th>Disbursements</th>
+                    <th>Cash in Hand At End</th>
+                    <th>Remove</th>
+                </tr>
+                @if (Model != null)
+                {
+                    @foreach (var financeData in Model)
+                    {
+                        <tr>
+                            <td>@financeData.committee_name</td>
+                            <td>@financeData.committee_state</td>
+                            <td>@financeData.cycle</td>
+                            <td>@financeData.cash_on_hand_beginning_period</td>
+                            <td>@financeData.net_contributions</td>
+                            <td>@financeData.all_loans_received</td>
+                            <td>@financeData.net_operating_expenditures</td>
+                            <td>@financeData.disbursements</td>
+                            <td>@financeData.last_cash_on_hand_end_period</td>
+                            <td><button type="button" onclick="">Cancel</button></td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+        <canvas id="bar-chart-grouped" width="800" height="450"></canvas>
+        <div class="graphDetails">
+            <h4>Committe Name: THE CONGRESSMAN JOE BARTON COMMITTEE</h4>
+            <h4>State: TX</h4>
+            <h4>Treasurer Name: BARTON, KRISTIN E</h4>
+        </div>
+    </div>
+
+    <div class="Contact">
+        <ul class="followUS">
+            <li>
+                <a href='https://twitter.com/fec' target='_blank'> <img src='t.png' width='32' height='32'> </a>
+            </li>
+            <li>
+                <a href='https://www.youtube.com/user/FECTube' target='_blank'><img src='y.png' width='32' height='32'></a>
+            </li>
+            <li class="signUp">
+                <a href='https://public.govdelivery.com/accounts/USFEC/subscriber/new?qsp=CODE_RED' target='_blank' style="color:beige">Sign Up for FECEmail</a>
+            </li>
+
+        </ul>
+    </div>
+</body>
+</html>
