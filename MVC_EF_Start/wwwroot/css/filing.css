@@ -1,0 +1,148 @@
+﻿
+body {
+    margin: 0px;
+    padding: 0px;
+    background-image: url("ElectionBackgroundCopy1.jpg");
+    background-size: cover;
+    height: 100%;
+    backdrop-filter: blur(8px);
+    font-family: 'Microsoft Sans Serif';
+}
+
+.clr {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    outline: 0px;
+    clear: both;
+}
+
+.wrapper {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    outline: 0px;
+}
+
+.headerAndInfo {
+    margin: 0px;
+    padding: 0px;
+    height: 125px;
+    background-color: whitesmoke;
+    font-family: 'Microsoft Sans Serif';
+}
+
+.headerStyle {
+    margin: 0px;
+    font-family: 'Microsoft Sans Serif';
+    text-align: center;
+    left: 100px;
+    font-size: 50px;
+    color: #00098b;
+    font-family: 'Microsoft Sans Serif';
+}
+
+.ActualTitle {
+    padding-top: 15px;
+    font-family: 'Microsoft Sans Serif';
+}
+
+    .ActualTitle img {
+        max-width: 50px;
+        max-height: 50px;
+        border-radius: 100%;
+    }
+
+.AboutWeb {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 10px;
+    font-family: 'Microsoft Sans Serif';
+    color: #577489;
+}
+
+.FilingTable {
+    position: relative;
+    text-align: center;
+    top: 10px;
+}
+
+
+
+.FRTitle {
+    margin-top: 70px;
+    text-align: center;
+    font-size: 35px;
+}
+
+.FilingReport {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+    .FilingReport input {
+        border-radius: 15px;
+    }
+
+nav {
+    position: relative;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+    height: 50px;
+    background-image: linear-gradient(140deg, #e2cbd1 0%, #BC70A4 50%, #BFD641 75%);
+}
+
+    nav a {
+        line-height: 50px;
+        height: 100%;
+        width: 230px;
+        font-size: 15px;
+        display: inline-block;
+        position: relative;
+        z-index: 1;
+        text-decoration: none;
+        text-transform: uppercase;
+        text-align: center;
+        color: white;
+        cursor: pointer;
+    }
+
+.followUS li {
+    float: left;
+    width: 80px;
+    list-style-type: none;
+    font-family: 'Microsoft Sans Serif';
+}
+
+.followUS .signUp {
+    width: 200px;
+    font-family: 'Microsoft Sans Serif';
+}
+
+.Contact {
+    // margin-top: 350px;
+    float: right;
+}
+
+table.gridtable {
+    color: wheat;
+    max-width: 1500px;
+    width: 1500px;
+    margin: 0 0 60px 52px;
+}
+
+    table.gridtable th {
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+    }
+
+    table.gridtable td {
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+    }

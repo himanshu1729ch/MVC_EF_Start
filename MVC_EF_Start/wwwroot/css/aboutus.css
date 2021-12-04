@@ -1,0 +1,227 @@
+﻿
+body {
+    margin: 0px;
+    padding: 0px;
+    background-image: url("ElectionBackgroundCopy1.jpg");
+    background-size: cover;
+    height: 150%;
+    backdrop-filter: blur(20px);
+    font-family: 'Microsoft Sans Serif';
+}
+
+.clr {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    outline: 0px;
+    clear: both;
+}
+
+.wrapper {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    outline: 0px;
+}
+
+.headerAndInfo {
+    margin: 0px;
+    padding: 0px;
+    height: 125px;
+    background-color: whitesmoke;
+    font-family: 'Microsoft Sans Serif';
+}
+
+.headerStyle {
+    margin: 0px;
+    font-family: 'Microsoft Sans Serif';
+    text-align: center;
+    left: 100px;
+    font-size: 50px;
+    color: #00098b;
+    font-family: 'Microsoft Sans Serif';
+}
+
+.ActualTitle {
+    padding-top: 15px;
+    font-family: 'Microsoft Sans Serif';
+}
+
+    .ActualTitle img {
+        max-width: 50px;
+        max-height: 50px;
+        border-radius: 100%;
+    }
+
+.AboutWeb {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 10px;
+    font-family: 'Microsoft Sans Serif';
+    color: #577489;
+}
+
+nav {
+    position: relative;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+    height: 50px;
+    background-image: linear-gradient(140deg, #e2cbd1 0%, #BC70A4 50%, #BFD641 75%);
+}
+
+    nav a {
+        line-height: 50px;
+        height: 100%;
+        width: 230px;
+        font-size: 15px;
+        display: inline-block;
+        position: relative;
+        z-index: 1;
+        text-decoration: none;
+        text-transform: uppercase;
+        text-align: center;
+        color: white;
+        cursor: pointer;
+    }
+
+.PageAfterTitle {
+    background-size: 100%;
+    height: 100%;
+    font-family: 'Microsoft Sans Serif';
+}
+
+.flex-container {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    font-family: 'Microsoft Sans Serif';
+}
+
+.hbox {
+    position: relative;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+.flex-item {
+    position: relative;
+    width: 100%;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Microsoft Sans Serif';
+}
+
+    .flex-item h4 {
+        font-size: 25px;
+    }
+
+    .flex-item li, p {
+        font-size: 18px;
+    }
+
+
+.followUS li {
+    float: right;
+    width: 80px;
+    list-style-type: none;
+    font-family: 'Microsoft Sans Serif';
+}
+
+.followUS .signUp {
+    float: right;
+    width: 200px;
+    font-family: 'Microsoft Sans Serif';
+}
+
+.aboutUsTable {
+    float: right;
+    margin-top: 50px;
+    margin-left: 5px;
+    margin-bottom: 25px;
+    width: 1000px;
+    font-family: 'Microsoft Sans Serif';
+}
+
+thead {
+    color: crimson;
+    text-align: left;
+    height: 50px;
+    font-size: 26px;
+    font-family: 'Microsoft Sans Serif';
+}
+
+td {
+    max-width: 200px;
+    word-wrap: break-word;
+    font-family: 'Microsoft Sans Serif';
+}
+
+.IndividualInfo {
+    color: antiquewhite;
+    font-family: 'Microsoft Sans Serif';
+}
+
+.Info {
+    max-width: 90%;
+    color: white;
+    font-family: 'Microsoft Sans Serif';
+    font-size: 15px;
+}
+
+.Contact {
+    float: right;
+}
+
+#PageContent {
+    max-width: 1631px;
+}
+
+    #PageContent p {
+        margin-left: 15px;
+        text-align: left;
+        max-width: 90%;
+        color: ghostwhite;
+        font-size: 18px;
+        word-wrap: break-word;
+        font-family: 'Microsoft Sans Serif';
+    }
+
+    #PageContent h4 {
+        padding: 20px 0 14px 0;
+    }
+
+#DataModelSection {
+    float: left;
+    margin: 15px;
+}
+
+    #DataModelSection h3 {
+        padding: 5px;
+        margin: 30px 5px 5px 10px;
+    }
+
+.DMImageAndOurImg::after {
+    float: left;
+}
+
+.FRTitle {
+    margin-top: 70px;
+    text-align: center;
+    font-size: 35px;
+}
+
+.Info a {
+    color: blue;
+    font-size: 20px;
+    background-color: white;
+}

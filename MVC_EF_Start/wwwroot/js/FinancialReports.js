@@ -1,5 +1,21 @@
-﻿window.onload = function () {
-    var chart = new Chart(document.getElementById("bar-chart-grouped"), {
+﻿
+DisplayChart = function (committeID) {
+    alert("this is the stop");
+    $.ajax({
+        url: 'Home/FinancialReportChart',
+        type: 'POST',
+        contentType: 'application/json;',
+        data: JSON.stringify({ id: committeID })
+        /*success: function (valid) {
+            if (valid) {
+                //show that id is valid 
+            } else {
+                //show that id is not valid 
+            }
+        }*/
+    });
+
+    /*var chart = new Chart(document.getElementById("bar-chart-grouped"), {
         type: 'bar',
         data: {
             labels: ["2014", "2016", "2018", "2020"],
@@ -45,9 +61,5 @@
             },
 
         }
-    });
-}
-
-btnonclick = function () {
-    alert("this is the stop");
+    });*/
 }

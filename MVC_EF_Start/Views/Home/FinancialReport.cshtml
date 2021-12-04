@@ -2,7 +2,7 @@
     Layout = null;
 }
 
-@model IEnumerable<MVC_EF_Start.Models.Result>
+@model MVC_EF_Start.Models.Result
 
 <!DOCTYPE ='html'>
 <html>
@@ -10,7 +10,7 @@
 <head>
 
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <link rel='stylesheet' href='css/FinancialReport.css'>
+    <link rel='stylesheet' href='~/css/FinancialReport.css'>
 
     <title>US Election Insights</title>
     <link rel="shortcut icon" type="image/jpg" href="Favicon.jpg" />
@@ -21,8 +21,8 @@
 <body>
     <nav>
         <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-        <a href="CandOrCommittee.cshtml">Candidate</a>
-        <a href="Committee.cshtml">Committee</a>
+        <a asp-area="" asp-controller="Home" asp-action="CandOrCommittee">Candidate</a>
+        <a asp-area="" asp-controller="Home" asp-action="Committee">Committee</a>
         <a asp-area="" asp-controller="Home" asp-action="FinancialReport">Financial Report</a>
         <a href="filing.cshtml">Committee Filings</a>
         <a href="aboutus.cshtml">About Us</a>
@@ -47,8 +47,16 @@
             <form class="FinancialReport">
                 <h4>Insert Committee ID below. You can get that from the Candidate/Committe page </h4>
                 <div>
-                    <input type="text" name="committeID" placeholder="Committee ID" />
-                    <input type="submit" asp-controller="Home" asp-action="GetFinancialData" value="Get Financial Report" />
+                    <select name="committeID" placeholder="Committee ID">
+                        <option>C00555748</option>
+                        <option>C00239533</option>
+                        <option>C00358796</option>
+                        <option>C00724070</option>
+                        <option>C00429613</option>
+                        <option>C00163121</option>
+                        <option>C00195065</option>
+                    </select>
+                    <input type="submit" asp-controller="Home" asp-action="FinancialReport" value="Get Financial Report" method="post" />
                 </div>
             </form>
             <table border="1" class="ReportTable">
@@ -66,21 +74,19 @@
                 </tr>
                 @if (Model != null)
                 {
-                    @foreach (var financeData in Model)
-                    {
-                        <tr>
-                            <td>@financeData.committee_name</td>
-                            <td>@financeData.committee_state</td>
-                            <td>@financeData.cycle</td>
-                            <td>@financeData.cash_on_hand_beginning_period</td>
-                            <td>@financeData.net_contributions</td>
-                            <td>@financeData.all_loans_received</td>
-                            <td>@financeData.net_operating_expenditures</td>
-                            <td>@financeData.disbursements</td>
-                            <td>@financeData.last_cash_on_hand_end_period</td>
-                            <td><button type="button" onclick="">Cancel</button></td>
-                        </tr>
-                    }
+                    <tr>
+                        <td>@Model.committee_name</td>
+                        <td>@Model.committee_state</td>
+                        <td>@Model.cycle</td>
+                        <td>@Model.cash_on_hand_beginning_period</td>
+                        <td>@Model.net_contributions</td>
+                        <td>@Model.all_loans_received</td>
+                        <td>@Model.net_operating_expenditures</td>
+                        <td>@Model.disbursements</td>
+                        <td>@Model.last_cash_on_hand_end_period</td>
+                        <td><button type="button" onclick="">Cancel</button></td>
+                    </tr>
+                   
                 }
             </table>
         </div>

@@ -7,8 +7,8 @@ namespace MVC_EF_Start.DataAccess
   {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<FinancialDataCollection> FinancialDataCollection { get; set; }
-        public DbSet<Pagination> Pagination { get; set; }
-        public DbSet<Result> results { get; set; }
+      //  public DbSet<FinancialDataCollection> FinancialDataCollection { get; set; }
+       // public DbSet<Pagination> Pagination { get; set; }
+        public DbSet<Models.Result> results { get; set; }
     }
 }

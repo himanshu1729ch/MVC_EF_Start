@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVC_EF_Start.Models
 {
-    public class FinancialDataCollection
+/*    public class FinancialDataCollection
     {
-        [Key] public int FinanceCollectionID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int ID { get; set; }
         public string api_version { get; set; }
         public Pagination pagination { get; set; }
         public List<Result> results { get; set; }
@@ -19,22 +20,23 @@ namespace MVC_EF_Start.Models
         public int pages { get; set; }
         public int per_page { get; set; }
     }
-
+*/
     public class Result
     {
-        [Key] public int FinanceReportID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int ID { get; set; }
         public string committee_id { get; set; }
         public int cycle { get; set; }
         public string committee_state { get; set; }
         public string committee_name { get; set; }
+        public string treasurer_name { get; set; }
         public float cash_on_hand_beginning_period { get; set; }
         public float net_contributions { get; set; }
         public float all_loans_received { get; set; }
         public float net_operating_expenditures { get; set; }
         public float disbursements { get; set; }
         public float last_cash_on_hand_end_period { get; set; }
-        public string treasurer_name { get; set; }
-        public FinancialDataCollection FinanceCollectionID { get; set; }
+        // public FinancialDataCollection FinancialDataCollection { get; set; }
+        // public FinancialDataCollection FinanceCollectionID { get; set; }
         /*
                 public Result(string committee_id, int cycle, string committee_state, string committee_name, float cash_on_hand_beginning_period, float net_contributions, float all_loans_received, float net_operating_expenditures, float disbursements, float last_cash_on_hand_end_period, string treasurer_name)
                 {
@@ -50,5 +52,13 @@ namespace MVC_EF_Start.Models
                     this.last_cash_on_hand_end_period = last_cash_on_hand_end_period;
                     this.treasurer_name = treasurer_name;
                 }*/
+    }
+
+    public class ChartModel
+    {
+        public string ChartType { get; set; }
+        public string Labels { get; set; }
+        public string Data { get; set; }
+        public string Title { get; set; }
     }
 }

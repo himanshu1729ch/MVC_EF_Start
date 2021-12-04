@@ -24,7 +24,7 @@ namespace MVC_EF_Start.Controllers
         }
 
         public async Task<ViewResult> DatabaseOperations()
-        {
+        {/*
             // CREATE operation
             Company MyCompany = new Company();
             MyCompany.Id = "MCOB";
@@ -89,13 +89,13 @@ namespace MVC_EF_Start.Controllers
             // DELETE operation
             dbContext.Companies.Remove(CompanyRead1);
             await dbContext.SaveChangesAsync();
-
+*/
             return View();
         }
 
         public ViewResult LINQOperations()
         {
-            Company CompanyRead1 = dbContext.Companies
+           /* Company CompanyRead1 = dbContext.Companies
                                             .Where(c => c.Id == "MCOB")
                                             .First();
 
@@ -110,7 +110,7 @@ namespace MVC_EF_Start.Controllers
                                     .FirstOrDefault()
                                     .Quotes
                                     .FirstOrDefault();
-
+*/
             return View();
         }
 

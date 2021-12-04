@@ -14,12 +14,21 @@ namespace MVC_EF_Start
   {
     public static void Main(string[] args)
     {
-      BuildWebHost(args).Run();
+            //BuildWebHost(args).Run();
+            CreateWebHostBuilder(args).Build().Run();
     }
 
-    public static IWebHost BuildWebHost(string[] args) =>
+       /* private static object CreateWebHostBuilder(string[] args)
+        {
+            throw new NotImplementedException();
+        }*/
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        WebHost.CreateDefaultBuilder(args)
+            .UseStartup<Startup>();
+
+        /*public static IWebHost BuildWebHost(string[] args) =>
         WebHost.CreateDefaultBuilder(args)
             .UseStartup<Startup>()
-            .Build();
-  }
+            .Build();*/
+    }
 }

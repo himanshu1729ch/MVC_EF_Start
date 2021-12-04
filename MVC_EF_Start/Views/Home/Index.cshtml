@@ -10,18 +10,18 @@
 <head>
 
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <link rel='stylesheet' href='css/index.css'>
+    <link rel='stylesheet' href='~/css/Index.css'>
 
     <title>US Election Insights</title>
     <link rel="shortcut icon" type="image/jpg" href="Favicon.jpg" />
-    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="~/js/index.js"></script>
 </head>
 
 <body>
     <nav>
         <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-        <a href="CandOrCommittee.cshtml">Candidate</a>
-        <a href="Committee.cshtml">Committee</a>
+        <a asp-area="" asp-controller="Home" asp-action="CandOrCommittee">Candidate</a>
+        <a asp-area="" asp-controller="Home" asp-action="Committee">Committee</a>
         <a asp-area="" asp-controller="Home" asp-action="FinancialReport">Financial Report</a>
         <a href="filing.cshtml">Committee Filings</a>
         <a href="aboutus.cshtml">About Us</a>

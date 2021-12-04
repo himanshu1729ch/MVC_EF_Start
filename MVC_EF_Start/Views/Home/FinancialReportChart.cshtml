@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Chart.js examples</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+</head>
+<body>
+    <h1> Bar chart example</h1>
+
+    <canvas id="bar-chart-grouped" width="800" height="450"></canvas>
+
+    <script>
+        new Chart(document.getElementById("bar-chart-grouped"), {
+      type: '@Model.ChartType',
+      data: {
+        labels: [@Html.Raw(@Model.Labels)],
+        datasets: [
+            {
+              label: "Cash at the Beginning",
+              backgroundColor: "#3636a1",
+              backdropColor: "white",
+              data: [@Model.Data]
+          }
+        ]
+      },
+      options: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: '@Model.Title'
+        }
+      }
+    });
+    </script>
+</body>
+</html>
