@@ -1,6 +1,7 @@
 ﻿@{
     Layout = null;
 }
+@model MVC_EF_Start.Models.Committee
 
 <!DOCTYPE ='html'>
 <html>
@@ -42,9 +43,18 @@
                 <h2 class="FRTitle">Committee Details</h2>
                 <form class="ComForm">
                     <h3>To search Committee details </h3>
-                    <label for="name_search">Search Committee by Name</label>
-                    <input type="search" id="name_search" name="name_search" placeholder="Committee Name">
-                    <input type="submit" value="Search" />
+                    <label for="name_search">Search Committee by ID</label>
+                    
+
+                    <select name='committeeID' class="field-style field-split align-right">
+                        <option>C00353375</option>
+                        <option>C00492579</option>
+                        <option>C00628529</option>
+                        <option>C00220624</option>
+                        <option>C00780585</option>
+                    </select>
+
+                    <input type="submit" asp-controller="Home" asp-action="Committee" value="Get Committee Details" method="post" />
 
                 </form>
             </div>
@@ -62,75 +72,25 @@
                         <th>Party Affiliation</th>
                         <th>State</th>
                         <th>Filing Frequency</th>
-
-
-
-                    </tr>
-                    <tr>
-                        <td>C00353375</td>
-                        <td>Principal campaign committee</td>
-                        <td>House</td>
-                        <td>PETER J ABAIR</td>
-                        <td>REPUBLICAN PARTY</td>
-                        <td>MA</td>
-                        <td>Terminated</td>
-
-                    </tr>
-                    <tr>
-                        <td>C00492579</td>
-                        <td>AMERICAN PRINCIPLES</td>
-                        <td>PAC - Qualified</td>
-                        <td>LAOR, EYTAN</td>
-                        <td>NONE</td>
-                        <td>FL</td>
-                        <td>Quarterly Filer</td>
                     </tr>
 
-                    <tr>
-                        <td>C00628529</td>
-                        <td>AMERICANS FOR PRINCIPLED LEADERSHIP</td>
-                        <td>PAC - Nonqualified</td>
-                        <td>TAYLOR, CAROLYN RANDS</td>
-                        <td>NONE</td>
-                        <td>TX</td>
-                        <td>Administratively terminated</td>
-                    </tr>
-                    <tr>
-                        <td>C00220624</td>
-                        <td>BEA MOONEY FOR PRESIDENT PRINCIPAL CAMPAIGN COMMITTEE</td>
-                        <td>Presidential</td>
-                        <td>JEAN PETERS</td>
-                        <td>REPUBLICAN PARTY</td>
-                        <td>MN</td>
-                        <td>Terminated</td>
-                    </tr>
-                    <tr>
-                        <td>C00780585</td>
-                        <td>CARSON 4 CONGRESS PRINCIPAL COMMITTEE</td>
-                        <td>House</td>
-                        <td>CARSON, PAULETTE</td>
-                        <td>REPUBLICAN PARTY</td>
-                        <td>TX</td>
-                        <td>Quarterly Filer</td>
-                    </tr>
-                    <tr>
-                        <td>C00303842</td>
-                        <td>COALITION FOR AMERICAN PRINCIPLE</td>
-                        <td>Single Candidate Independent Expenditure</td>
-                        <td>BRIGITTE L YOUNGBLOOD</td>
-                        <td>NONE</td>
-                        <td>CA</td>
-                        <td>Terminated</td>
-                    </tr>
-                    <tr>
-                        <td>C00142281</td>
-                        <td>COMMITTEE FOR AMERICAN PRINCIPLES</td>
-                        <td>PAC - Nonqualified</td>
-                        <td>ROBERT A BLAEMIRE</td>
-                        <td>NONE</td>
-                        <td>DC</td>
-                        <td>Terminated</td>
-                    </tr>
+                    @if (Model != null)
+                    {
+                       
+                            <tr>
+                                <td>@Model.committee_id</td>
+                                <td>@Model.committee_name</td>
+                                <td>@Model.committee_type</td>
+                                <td>@Model.treasurer_name</td>
+                                <td>@Model.party_aff</td>
+                                <td>@Model.state</td>
+                                <td>@Model.filing_freq</td>
+
+                                <td><button type="button" onclick="">Cancel</button></td>
+                            </tr>
+                      
+                    }
+
 
                 </table>
 

@@ -73,4 +73,28 @@ namespace MVC_EF_Start.Models
         public int cycle { get; set; }
         public string pdf_url { get; set; }
     }
+
+    public class CandOrCommittee
+    {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int ID { get; set; }
+        public string candidate_id { get; set; }
+        public string candidate_name { get; set; }
+        public string office { get; set; }
+        public string state { get; set; }
+        public string party_aff { get; set; }
+        public string cand_status { get; set; }
+        public int active_thr { get; set; }
+
+    }
+    public class Committee
+    {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int ID { get; set; }
+        public string committee_id { get; set; }
+        public string committee_name { get; set; }
+        public string committee_type { get; set; }
+        public string treasurer_name { get; set; }
+        public string party_aff { get; set; }
+        public string state { get; set; }
+        public string filing_freq { get; set; }
+    }
 }

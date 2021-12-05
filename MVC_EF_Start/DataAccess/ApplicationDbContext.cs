@@ -11,5 +11,9 @@ namespace MVC_EF_Start.DataAccess
        // public DbSet<Pagination> Pagination { get; set; }
         public DbSet<Models.Result> results { get; set; }
         public DbSet<Models.Filing> filings { get; set; }
+
+        public DbSet<Models.CandOrCommittee> cand { get; set; }
+
+        public DbSet<Models.Committee> com { get; set; }
     }
 }
