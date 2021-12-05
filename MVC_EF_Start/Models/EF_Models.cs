@@ -4,23 +4,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVC_EF_Start.Models
 {
-/*    public class FinancialDataCollection
-    {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int ID { get; set; }
-        public string api_version { get; set; }
-        public Pagination pagination { get; set; }
-        public List<Result> results { get; set; }
-    }
+    /*    public class FinancialDataCollection
+        {
+            [DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int ID { get; set; }
+            public string api_version { get; set; }
+            public Pagination pagination { get; set; }
+            public List<Result> results { get; set; }
+        }
 
-    public class Pagination
-    {
-        [Key] public int PageID { get; set; }
-        public int count { get; set; }
-        public int page { get; set; }
-        public int pages { get; set; }
-        public int per_page { get; set; }
-    }
-*/
+        public class Pagination
+        {
+            [Key] public int PageID { get; set; }
+            public int count { get; set; }
+            public int page { get; set; }
+            public int pages { get; set; }
+            public int per_page { get; set; }
+        }
+    */
     public class Result
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int ID { get; set; }
@@ -60,5 +60,17 @@ namespace MVC_EF_Start.Models
         public string Labels { get; set; }
         public string Data { get; set; }
         public string Title { get; set; }
+    }
+
+    public class Filing
+    {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] public int ID { get; set; }
+        public string candidate_id { get; set; }
+        public string form_type { get; set; }
+        public string form_category { get; set; }
+        public string document_description { get; set; }
+        public string means_filed { get; set; }
+        public int cycle { get; set; }
+        public string pdf_url { get; set; }
     }
 }

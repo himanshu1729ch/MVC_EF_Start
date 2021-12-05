@@ -1,4 +1,8 @@
-﻿<!DOCTYPE ='html'>
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE ='html'>
 <html>
 
 <head>
@@ -16,7 +20,8 @@
         <a asp-area="" asp-controller="Home" asp-action="CandOrCommittee">Candidate</a>
         <a asp-area="" asp-controller="Home" asp-action="Committee">Committee</a>
         <a asp-area="" asp-controller="Home" asp-action="FinancialReport">Financial Report</a>
-        <a href="aboutus.html">About Us</a>
+        <a asp-area="" asp-controller="Home" asp-action="filing">Candidate Filings</a>
+        <a asp-area="" asp-controller="Home" asp-action="aboutus">About Us</a>
     </nav>
     <div class="wrapper">
 
@@ -165,10 +170,10 @@
         <div class="Contact">
             <ul class="followUS">
                 <li>
-                    <a href='https://twitter.com/fec' target='_blank'> <img src='t.png' width='32' height='32'> </a>
+                    <a href='https://twitter.com/fec' target='_blank'> <img src='~/img/t.png' width='32' height='32'> </a>
                 </li>
                 <li>
-                    <a href='https://www.youtube.com/user/FECTube' target='_blank'><img src='y.png' width='32' height='32'></a>
+                    <a href='https://www.youtube.com/user/FECTube' target='_blank'><img src='~/img/y.png' width='32' height='32'></a>
                 </li>
                 <li class="signUp">
                     <a href='https://public.govdelivery.com/accounts/USFEC/subscriber/new?qsp=CODE_RED' target='_blank' style="color:beige">Sign Up for FECEmail</a>

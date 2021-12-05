@@ -1,0 +1,152 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE ='html'>
+<html>
+
+<head>
+
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' href='css/aboutus.css'>
+
+    <title>US Election Insights</title>
+    <link rel="shortcut icon" type="image/jpg" href="Favicon.jpg" />
+</head>
+
+<body>
+    <nav>
+        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        <a asp-area="" asp-controller="Home" asp-action="CandOrCommittee">Candidate</a>
+        <a asp-area="" asp-controller="Home" asp-action="Committee">Committee</a>
+        <a asp-area="" asp-controller="Home" asp-action="FinancialReport">Financial Report</a>
+        <a asp-area="" asp-controller="Home" asp-action="filing">Candidate Filings</a>
+        <a asp-area="" asp-controller="Home" asp-action="aboutus">About Us</a>
+    </nav>
+    <div class="wrapper">
+
+        <div class="clr"></div>
+        <header class="headerAndInfo">
+            <div class="headerStyle">
+                <div class="ActualTitle"><img src="Favicon.jpg" /> US Election Insights</div>
+            </div>
+
+            <div class="AboutWeb">
+                This Website is created to provide information about the US elections. You can find information about candidates, committees and important dates related to elections.
+                For more information visit <a href="https://www.fec.gov/"> Click here</a>.
+            </div>
+        </header>
+        <h2 class="FRTitle">About Us</h2>
+        <div class="PageAfterTitle">
+            <div id="PageContent" class='flex-container hbox'>
+                <div class='flex-item'>
+                    <h4>Project Details</h4>
+                    <p>
+                        The US Elections Insight Project is an information source for the United States election system.  The mission of the project is to provide
+                        election statistics, various committe's' Financial reports, and other useful information regarding the United States electoral system. By providing this information,
+                        the project seeks to inform the people of the United States on what is the current status of their electoral system. We made use of html5, CSS3, JavaScript.
+                        <br />
+                        You can find information about candidates and committees related to elections.
+                        <br /> This Project has all CRUD functions and has 3 one to many relations in the database.
+                    </p>
+
+                </div>
+                <div class='flex-item'>
+                    <h4>API Details</h4>
+
+                    <p>
+                        We are make use of <a href="https://api.open.fec.gov/developers/" style="color:cornflowerblue">open.fec.gov APIs</a>
+                        to fetch data from following EndPoints <br /><br />
+                        Candidate Details<br /> <a href="https://api.open.fec.gov/developers/#/candidate/get_candidate__candidate_id__">candidate/{candidate_id}/</a> <br />
+                        Committee Details<br /> <a href="https://api.open.fec.gov/developers/#/committee/get_candidate__candidate_id__committees_">candidate/{candidate_id}/committees/</a> <br />
+                        Financial Report<br /> <a href="https://api.open.fec.gov/developers/#/financial/get_committee__committee_id__totals_">/committee/{committee_id}/totals/</a> <br />
+                        Filing Forms<br /> <a href="https://api.open.fec.gov/developers/#/filings/get_candidate__candidate_id__filings_">/candidate/{candidate_id}/filings/</a> <br />
+                    </p>
+                </div>
+
+                <div class='flex-item'>
+                    <h4>Learnings</h4>
+                    <div>
+                        <ul>
+                            <li> We gained knowledge about HTML5, CSS3 and JavaScript</li>
+                            <li>We implemented differents HTML components such as DatePicker, Forms, DropDowns, Image Sliders, etc </li>
+                            <li>We also learnt Team Collaboration.</li>
+                            <li>Gained insights on how a project is designed, coded, integrated and tested.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="DMImageAndOurImg">
+                <div id="DataModelSection" title="Data Model">
+                    <h3>Data Model</h3>
+                    <img src="datamodel.png" alt="DataModel" width=700 height=500>
+                </div>
+                <table class="aboutUsTable">
+                    <thead>
+                        <tr>
+                            <th colspan="3">Group 16 ( <a style="color:aqua" href="https://github.com/rhthorat/Assignment3_LookAndFeelGroup16">Our project Repository</a> )</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="Himanshu.jpg" alt="Himanshu" width=170 height=220></td>
+                            <td><img src="Riya.jpg" alt="Riya" width=170 height=220></td>
+                            <td><img src="Rujuta.jpg" alt="Rujuta" width=170 height=220></td>
+                        </tr>
+                        <tr class="IndividualInfo">
+                            <td>Himanshu Chandel</td>
+                            <td>Riya Bansode</td>
+                            <td>Rujuta Thorat</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="Info">
+                                    Himanshu Chandel worked as a Data Analyst. I am a focused and diligent student, currently pursuing Masters in
+                                    Business Analytics and Information Systems at University of South Florida. My Contribution to the project: I worked on the Data Model and Filing
+                                    Report page on this project.<br /> <br /><a href="https://github.com/himanshu1729ch">GitHub</a>
+                                </p>
+                            </td>
+
+                            <td>
+                                <p class="Info">
+                                    I am Riya Bansode. I am a Masters Student pursuing Business Analytics and Information Systems from
+                                    University of South Florida. I am in second semester. I am currently working as Data Analyst at FrankCrum Corporate Inc.
+                                    My Contribution to the project: I created the Candidate and Committee pages.<br /><br />
+                                    <a href="https://github.com/riyaBansode">GitHub</a>
+                                </p>
+                            </td>
+
+                            <td>
+                                <p class="Info">
+                                    I am Rujuta Thorat. I am a Graduate Student pursuing second semester of MS in Business Analytics and Information Systems from
+                                    University of South Florida.
+                                    I am a former Application Software Engineer with about 5+ years of experience working in Accenture Services Ltd.
+                                    My contribution to the project: I created the index page, Financial Report page and About us pages. <br /><br />
+                                    <a href="https://github.com/rhthorat">GitHub</a>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="Contact">
+                <ul class="followUS">
+                    <li class="signUp">
+                        <a href='https://public.govdelivery.com/accounts/USFEC/subscriber/new?qsp=CODE_RED' target='_blank' style="color:beige">Sign Up for FECEmail</a>
+                    </li>
+
+                    <li>
+                        <a href='https://www.youtube.com/user/FECTube' target='_blank'><img src='~/img/y.png' width='32' height='32'></a>
+                    </li>
+                    <li>
+                        <a href='https://twitter.com/fec' target='_blank'> <img src='~/img/t.png' width='32' height='32'> </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

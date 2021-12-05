@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace MVC_EF_Start.Controllers
 {
@@ -32,50 +33,95 @@ namespace MVC_EF_Start.Controllers
         public async Task<ViewResult> Index()
         {
             string[] committeeIDs = { "C00555748", "C00239533", "C00358796", "C00724070", "C00429613", "C00163121", "C00195065" };
+            string[] candidateIDs = { "P40006033", "P00011569", "P40002172", "S2CO00175", "H0UT03227" };
 
-            foreach (string committeID in committeeIDs)
+            /* foreach (string committeID in committeeIDs)
+             {
+                 httpClient = new HttpClient();
+                 httpClient.DefaultRequestHeaders.Accept.Clear();
+                 httpClient.DefaultRequestHeaders.Add("X-Api-Key", API_KEY);
+                 httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                 string FinancialData_API_PATH = BASE_URL + "/committee/" + committeID + "/totals/?sort_hide_null=false&sort_nulls_last=false&page=1&api_key="
+                   + API_KEY + "&per_page=20&sort_null_only=false&sort=-cycle";
+
+                 string financialData = null;
+
+                 httpClient.BaseAddress = new Uri(FinancialData_API_PATH);
+                 try
+                 {
+                     HttpResponseMessage response = httpClient.GetAsync(FinancialData_API_PATH)
+                                                         .GetAwaiter().GetResult();
+
+                     if (response.IsSuccessStatusCode)
+                     {
+                         financialData = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                     }
+
+                     JObject parsedResponse = JObject.Parse(financialData);
+                     JArray fData = (JArray)parsedResponse["results"];
+
+                     Result report = new Result();
+                     report.committee_id = (string)parsedResponse["results"][0]["committee_id"];
+                     report.cycle = (int)parsedResponse["results"][0]["cycle"];
+                     report.committee_state = (string)parsedResponse["results"][0]["committee_state"];
+                     report.committee_name = (string)parsedResponse["results"][0]["committee_name"];
+                     report.cash_on_hand_beginning_period = (float)parsedResponse["results"][0]["cash_on_hand_beginning_period"];
+                     report.net_contributions = (float)parsedResponse["results"][0]["net_contributions"];
+                     report.all_loans_received = (float)parsedResponse["results"][0]["all_loans_received"];
+                     report.net_operating_expenditures = (float)parsedResponse["results"][0]["net_operating_expenditures"];
+                     report.disbursements = (float)parsedResponse["results"][0]["disbursements"];
+                     report.last_cash_on_hand_end_period = (float)parsedResponse["results"][0]["last_cash_on_hand_end_period"];
+                     report.treasurer_name = (string)parsedResponse["results"][0]["treasurer_name"];
+
+                     dbContext.results.Add(report);
+
+                 }
+                 catch (Exception e)
+                 {
+                     // This is a useful place to insert a breakpoint and observe the error message
+                     Console.WriteLine(e.Message);
+                 }
+             }
+             dbContext.SaveChanges();*/
+
+            //Fetching data from Filing API
+            foreach (string candidateID in candidateIDs)
             {
                 httpClient = new HttpClient();
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Add("X-Api-Key", API_KEY);
                 httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                string FinancialData_API_PATH = BASE_URL + "/committee/" + committeID + "/totals/?sort_hide_null=false&sort_nulls_last=false&page=1&api_key="
-                  + API_KEY + "&per_page=20&sort_null_only=false&sort=-cycle";
+                string FilingData_API_PATH = BASE_URL + "/candidate/" + candidateID + "/filings/?sort=-receipt_date&sort_null_only=false&page=1&sort_nulls_last=false&per_page=20&api_key="
+                  + API_KEY + "&sort_hide_null=false";
 
-                string financialData = null;
+                string filingData = null;
 
-                httpClient.BaseAddress = new Uri(FinancialData_API_PATH);
+                httpClient.BaseAddress = new Uri(FilingData_API_PATH);
                 try
                 {
-                    HttpResponseMessage response = httpClient.GetAsync(FinancialData_API_PATH)
+                    HttpResponseMessage response = httpClient.GetAsync(FilingData_API_PATH)
                                                         .GetAwaiter().GetResult();
 
                     if (response.IsSuccessStatusCode)
                     {
-                        financialData = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                        filingData = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
                     }
 
-                    JObject parsedResponse = JObject.Parse(financialData);
+                    JObject parsedResponse = JObject.Parse(filingData);
                     JArray fData = (JArray)parsedResponse["results"];
 
-                    Result report = new Result();
-                    report.committee_id = (string)parsedResponse["results"][0]["committee_id"];
-                    report.cycle = (int)parsedResponse["results"][0]["cycle"];
-                    report.committee_state = (string)parsedResponse["results"][0]["committee_state"];
-                    report.committee_name = (string)parsedResponse["results"][0]["committee_name"];
-                    report.cash_on_hand_beginning_period = (float)parsedResponse["results"][0]["cash_on_hand_beginning_period"];
-                    report.net_contributions = (float)parsedResponse["results"][0]["net_contributions"];
-                    report.all_loans_received = (float)parsedResponse["results"][0]["all_loans_received"];
-                    report.net_operating_expenditures = (float)parsedResponse["results"][0]["net_operating_expenditures"];
-                    report.disbursements = (float)parsedResponse["results"][0]["disbursements"];
-                    report.last_cash_on_hand_end_period = (float)parsedResponse["results"][0]["last_cash_on_hand_end_period"];
-                    report.treasurer_name = (string)parsedResponse["results"][0]["treasurer_name"];
+                    Filing filingReport = new Filing();
+                    filingReport.candidate_id = (string)parsedResponse["results"][0]["candidate_id"];
+                    filingReport.form_type = (string)parsedResponse["results"][0]["form_type"];
+                    filingReport.form_category = (string)parsedResponse["results"][0]["form_category"];
+                    filingReport.document_description = (string)parsedResponse["results"][0]["document_description"];
+                    filingReport.means_filed = (string)parsedResponse["results"][0]["means_filed"];
+                    filingReport.cycle = (int)parsedResponse["results"][0]["cycle"];
+                    filingReport.pdf_url = (string)parsedResponse["results"][0]["pdf_url"];
 
-                    if (dbContext.results.Where(c => c.committee_id == report.committee_id).ToList().Count == 0)
-                    {
-                        dbContext.results.Add(report);
-                    }
+                    dbContext.filings.Add(filingReport);
 
                 }
                 catch (Exception e)
@@ -91,7 +137,24 @@ namespace MVC_EF_Start.Controllers
 
         public async Task<ViewResult> FinancialReport(string committeID)
         {
+            
             Result reportDetails = dbContext.results.Where(c => c.committee_id == committeID).FirstOrDefault();
+
+            string[] ChartLabels = new string[] { "Cash At The Start", "Net Contribution", "Loan Received", "Net Operating Expenditure", "Disbursements", "Cash Ath The End" };
+            if (reportDetails != null)
+            {
+                float[] ChartData = new float[] { reportDetails.cash_on_hand_beginning_period, reportDetails.net_contributions, reportDetails.all_loans_received, reportDetails.net_operating_expenditures,
+                reportDetails.disbursements, reportDetails.last_cash_on_hand_end_period };
+
+                ChartModel Model = new ChartModel
+                {
+                    ChartType = "bar",
+                    Labels = String.Join(",", ChartLabels.Select(d => "'" + d + "'")),
+                    Data = String.Join(",", ChartData.Select(d => d)),
+                    Title = "Financial Status Graph (amount in millions)"
+                };
+                ViewBag.chartModel = Model;
+            }
             await dbContext.SaveChangesAsync();
             return View(reportDetails);
         }
@@ -107,10 +170,32 @@ namespace MVC_EF_Start.Controllers
             await dbContext.SaveChangesAsync();
             return View();
         }
-        public ViewResult FinancialReportChart(string committeID)
+
+        public IActionResult Delete(string cond)
         {
-            
+            var rec = dbContext.results.Where(c => c.committee_id == cond).FirstOrDefault();
+            if (rec != null)
+            {
+                dbContext.results.Remove(rec);
+                dbContext.SaveChanges();
+                TempData["shortMessage"] = "Deleted Successfully";
+            }
+
+            return RedirectToAction("FinancialReport", new { val = cond });
+        }
+        public async Task<ViewResult> filing(string candidateID)
+        {
+            Filing filingDetails = dbContext.filings.Where(c => c.candidate_id == candidateID).FirstOrDefault();
+              
+            await dbContext.SaveChangesAsync();
+            return View(filingDetails);
+        }
+
+        public async Task<ViewResult> aboutus()
+        {
+            await dbContext.SaveChangesAsync();
             return View();
         }
+        
     }
 }

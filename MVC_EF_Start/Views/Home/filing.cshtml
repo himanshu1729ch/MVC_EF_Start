@@ -1,21 +1,21 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
-<!DOCTYPE html>
+@model MVC_EF_Start.Models.Filing
 
+<!DOCTYPE ='html'>
 <html>
 
 <head>
 
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <link rel='stylesheet' href='~/css/Index.css'>
+    <link rel='stylesheet' href='css/filing.css'>
 
     <title>US Election Insights</title>
-    <link rel="shortcut icon" type="image/jpg" href="Favicon.jpg" />
-    <script type="text/javascript" src="~/js/index.js"></script>
+
 </head>
+
 
 <body>
     <nav>
@@ -39,27 +39,52 @@
                 For more information visit <a href="https://www.fec.gov/"> Click here</a>.
             </div>
         </header>
-
-        <div id="slider">
-            <ul id="slideWrap">
-                <li><img src="img/img1.png" alt=""></li>
-                <li><img src="img/Slide1.jpg" alt=""></li>
-                <li><img src="img/slide2.jpg" alt=""></li>
-                <li><img src="img/slide3.jpg" alt=""></li>
-                <li><img src="img/slide4.png" alt=""></li>
-            </ul>
-            <a id="prev" href="#">&#8810;</a>
-            <a id="next" href="#">&#8811;</a>
-        </div>
-        <div class="bg-text">
-            <p>
-                The US Election Insights Project is an information source for the United States election system.  The mission of the project is to provide
-                election statistics, various committe's' Financial reports, filing data, and other useful information regarding the United States electoral system. By providing this information,
-                the project seeks to inform the people of the United States on what is the current status of their electoral system. <br /> The project is making use of information from
-                <a href="https://www.fec.gov/">fec.gov</a>
-            </p>
-        </div>
     </div>
+
+    <h2 class="FRTitle">Filing Events </h2>
+
+    <form class="FilingReport">
+        <h4>All official records and reports filed by or delivered to the FEC.</h4>
+        <h4>Insert Candidate ID below. You can get that from the Candidate/Committe page </h4>
+        <div>
+            <select name="candidateID" placeholder="Candidate ID">
+                <option>P40006033</option>
+                <option>P00011569</option>
+                <option>P40002172</option>
+                <option>S2CO00175</option>
+                <option>H0UT03227</option>
+            </select>
+            <input type="submit" asp-controller="Home" asp-action="filing" value="Get Filing Report" method="post" />
+        </div>
+    </form>
+
+    <div class="FilingTable">
+        <table border="1" class="gridtable">
+            <tr>
+                <th>Candidate ID</th>
+                <th>Form Type</th>
+                <th>Form Category</th>
+                <th>Document Description</th>
+                <th>Means Filed</th>
+                <th>Reciept Year</th>
+                <th>Form PDF URL</th>
+            </tr>
+            @if (Model != null)
+            {
+                <tr>
+                    <td>@Model.candidate_id</td>
+                    <td>@Model.form_type</td>
+                    <td>@Model.form_category</td>
+                    <td>@Model.document_description</td>
+                    <td>@Model.means_filed</td>
+                    <td>@Model.cycle</td>
+                    <td>@Model.pdf_url</td>
+                </tr>
+            }
+        </table>
+
+    </div>
+
     <div class="Contact">
         <ul class="followUS">
             <li>

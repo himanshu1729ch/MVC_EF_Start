@@ -10,5 +10,6 @@ namespace MVC_EF_Start.DataAccess
       //  public DbSet<FinancialDataCollection> FinancialDataCollection { get; set; }
        // public DbSet<Pagination> Pagination { get; set; }
         public DbSet<Models.Result> results { get; set; }
+        public DbSet<Models.Filing> filings { get; set; }
     }
 }
