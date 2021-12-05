@@ -27,6 +27,7 @@ namespace MVC_EF_Start.Controllers
         public HomeController(ApplicationDbContext context)
         {
             dbContext = context;
+            dbContext.Database.EnsureCreated();
             // _appSettings = appSettings.Value;
         }
 
@@ -35,6 +36,7 @@ namespace MVC_EF_Start.Controllers
             string[] committeeIDs = { "C00555748", "C00239533", "C00358796", "C00724070", "C00429613", "C00163121", "C00195065" };
             string[] candidateIDs = { "P40006033", "P00011569", "P40002172", "S2CO00175", "H0UT03227" };
 
+            //Fetch financial report data from API and added to database
             foreach (string committeID in committeeIDs)
             {
                 httpClient = new HttpClient();
@@ -88,7 +90,7 @@ namespace MVC_EF_Start.Controllers
             }
             dbContext.SaveChanges();
 
-            //Fetching data from Filing API
+            //Fetching data from Filing API and andding to database
             foreach (string candidateID in candidateIDs)
             {
                 httpClient = new HttpClient();
@@ -135,93 +137,117 @@ namespace MVC_EF_Start.Controllers
                 }
             }
 
-            CandOrCommittee cand = new CandOrCommittee();
-            cand.candidate_id = "S2TX00460";
-            cand.candidate_name = "AGRIS, JOE";
-            cand.office = "Senate";
-            cand.state = "TX";
-            cand.party_aff = "REPUBLICAN PARTY";
-            cand.cand_status = "Not yet a candidate";
-            cand.active_thr = 2012;
+            try
+            {
+                CandOrCommittee cand = new CandOrCommittee();
+                cand.candidate_id = "S2TX00460";
+                cand.candidate_name = "AGRIS, JOE";
+                cand.office = "Senate";
+                cand.state = "TX";
+                cand.party_aff = "REPUBLICAN PARTY";
+                cand.cand_status = "Not yet a candidate";
+                cand.active_thr = 2012;
 
-            CandOrCommittee cand1 = new CandOrCommittee();
-            cand1.candidate_id = "H0MA01024";
-            cand1.candidate_name = "ABAIR, PETER JON";
-            cand1.office = "House";
-            cand1.state = "MA";
-            cand1.party_aff = "REPUBLICAN PARTY";
-            cand1.cand_status = "Prior Candidate";
-            cand1.active_thr = 2000;
+                CandOrCommittee cand1 = new CandOrCommittee();
+                cand1.candidate_id = "H0MA01024";
+                cand1.candidate_name = "ABAIR, PETER JON";
+                cand1.office = "House";
+                cand1.state = "MA";
+                cand1.party_aff = "REPUBLICAN PARTY";
+                cand1.cand_status = "Prior Candidate";
+                cand1.active_thr = 2000;
 
-            CandOrCommittee cand2 = new CandOrCommittee();
-            cand2.candidate_id = "H2MT00039";
-            cand2.candidate_name = "JOHN ALLEN ABARR";
-            cand2.office = "House";
-            cand2.state = "MT";
-            cand2.party_aff = "REPUBLICAN PARTY";
-            cand2.cand_status = "Not yet a candidate";
-            cand2.active_thr = 2012;
+                CandOrCommittee cand2 = new CandOrCommittee();
+                cand2.candidate_id = "H2MT00039";
+                cand2.candidate_name = "JOHN ALLEN ABARR";
+                cand2.office = "House";
+                cand2.state = "MT";
+                cand2.party_aff = "REPUBLICAN PARTY";
+                cand2.cand_status = "Not yet a candidate";
+                cand2.active_thr = 2012;
 
-            dbContext.cand.Add(cand);
-            dbContext.cand.Add(cand1);
-            dbContext.cand.Add(cand2);
+                if (dbContext.cand != null && dbContext.cand.Where(c => c.candidate_id == cand.candidate_id).ToList().Count == 0)
+                {
+                    dbContext.cand.Add(cand);
+                    dbContext.cand.Add(cand1);
+                    dbContext.cand.Add(cand2);
+                }
+            }
+            catch (Exception e)
+            {
+                // This is a useful place to insert a breakpoint and observe the error message
+                Console.WriteLine(e.Message);
+            }
 
-            Committee com = new Committee();
-            com.committee_id = "C00353375";
-            com.committee_name = "Principal campaign committee";
-            com.committee_type = "House";
-            com.treasurer_name = "PETER J ABAIR";
-            com.party_aff = "REPUBLICAN PARTY";
-            com.state = "MA";
-            com.filing_freq = "Terminated";
+            try
+            {
+                Committee com = new Committee();
+                com.committee_id = "C00353375";
+                com.committee_name = "Principal campaign committee";
+                com.committee_type = "House";
+                com.treasurer_name = "PETER J ABAIR";
+                com.party_aff = "REPUBLICAN PARTY";
+                com.state = "MA";
+                com.filing_freq = "Terminated";
 
-            Committee com1 = new Committee();
-            com1.committee_id = "C00492579";
-            com1.committee_name = "AMERICAN PRINCIPLES";
-            com1.committee_type = "PAC - Qualified";
-            com1.treasurer_name = "LAOR EYTAN";
-            com1.party_aff = "NONE";
-            com1.state = "FL";
-            com1.filing_freq = "Quarterly Filer";
+                Committee com1 = new Committee();
+                com1.committee_id = "C00492579";
+                com1.committee_name = "AMERICAN PRINCIPLES";
+                com1.committee_type = "PAC - Qualified";
+                com1.treasurer_name = "LAOR EYTAN";
+                com1.party_aff = "NONE";
+                com1.state = "FL";
+                com1.filing_freq = "Quarterly Filer";
 
-            Committee com2 = new Committee();
-            com2.committee_id = "C00628529";
-            com2.committee_name = "AMERICANS FOR PRINCIPLED LEADERSHIP";
-            com2.committee_type = "PAC - NonQualified";
-            com2.treasurer_name = "CAROLYN RANDS TAYLOR";
-            com2.party_aff = "NONE";
-            com2.state = "TX";
-            com2.filing_freq = "Administratively terminated";
+                Committee com2 = new Committee();
+                com2.committee_id = "C00628529";
+                com2.committee_name = "AMERICANS FOR PRINCIPLED LEADERSHIP";
+                com2.committee_type = "PAC - NonQualified";
+                com2.treasurer_name = "CAROLYN RANDS TAYLOR";
+                com2.party_aff = "NONE";
+                com2.state = "TX";
+                com2.filing_freq = "Administratively terminated";
 
-            Committee com3 = new Committee();
-            com3.committee_id = "C00220624";
-            com3.committee_name = "BEA MOONEY FOR PRESIDENT PRINCIPAL CAMPAIGN COMMITTEE";
-            com3.committee_type = "Presidential";
-            com3.treasurer_name = "JEAN PETERS";
-            com3.party_aff = "REPUBLICAN PARTY";
-            com3.state = "MN";
-            com3.filing_freq = "Terminated";
+                Committee com3 = new Committee();
+                com3.committee_id = "C00220624";
+                com3.committee_name = "BEA MOONEY FOR PRESIDENT PRINCIPAL CAMPAIGN COMMITTEE";
+                com3.committee_type = "Presidential";
+                com3.treasurer_name = "JEAN PETERS";
+                com3.party_aff = "REPUBLICAN PARTY";
+                com3.state = "MN";
+                com3.filing_freq = "Terminated";
 
-            Committee com4 = new Committee();
-            com4.committee_id = "C00780585";
-            com4.committee_name = "CARSON 4 CONGRESS PRINCIPAL COMMITTEE";
-            com4.committee_type = "House";
-            com4.treasurer_name = "PAULETTE CARSON";
-            com4.party_aff = "REPUBLICAN PARTY";
-            com4.state = "TX";
-            com4.filing_freq = "Quarterly Filer";
+                Committee com4 = new Committee();
+                com4.committee_id = "C00780585";
+                com4.committee_name = "CARSON 4 CONGRESS PRINCIPAL COMMITTEE";
+                com4.committee_type = "House";
+                com4.treasurer_name = "PAULETTE CARSON";
+                com4.party_aff = "REPUBLICAN PARTY";
+                com4.state = "TX";
+                com4.filing_freq = "Quarterly Filer";
 
-            dbContext.com.Add(com);
-            dbContext.com.Add(com1);
-            dbContext.com.Add(com2);
-            dbContext.com.Add(com3);
-            dbContext.com.Add(com4);
+                if (dbContext.com != null && dbContext.com.Where(c => c.committee_id == com.committee_id).ToList().Count == 0)
+                {
+                    dbContext.com.Add(com);
+                    dbContext.com.Add(com1);
+                    dbContext.com.Add(com2);
+                    dbContext.com.Add(com3);
+                    dbContext.com.Add(com4);
+                }
+            }
+            catch (Exception e)
+            {
+                // This is a useful place to insert a breakpoint and observe the error message
+                Console.WriteLine(e.Message);
+            }
+
 
             dbContext.SaveChanges();
             await dbContext.SaveChangesAsync();
             return View();
         }
 
+        //Read finacial report data and display it on the view
         public async Task<ViewResult> FinancialReport(string committeID)
         {
             
@@ -246,6 +272,7 @@ namespace MVC_EF_Start.Controllers
             return View(reportDetails);
         }
 
+        //Read Candidate data and display it on the view
         public async Task<ViewResult> CandOrCommittee(string candidateID)
         {
             CandOrCommittee candDetails = dbContext.cand.Where(c => c.candidate_id == candidateID).FirstOrDefault();
@@ -254,6 +281,7 @@ namespace MVC_EF_Start.Controllers
             return View(candDetails);
         }
 
+        //Read Committe data and display it on the view
         public async Task<ViewResult> Committee(string committeeID)
         {
             Committee comDetails = dbContext.com.Where(c => c.committee_id == committeeID).FirstOrDefault();
@@ -261,18 +289,8 @@ namespace MVC_EF_Start.Controllers
             return View(comDetails);
         }
 
-        public IActionResult Delete(string cond)
-        {
-            var rec = dbContext.results.Where(c => c.committee_id == cond).FirstOrDefault();
-            if (rec != null)
-            {
-                dbContext.results.Remove(rec);
-                dbContext.SaveChanges();
-                TempData["shortMessage"] = "Deleted Successfully";
-            }
 
-            return RedirectToAction("FinancialReport", new { val = cond });
-        }
+        //Read Candidate Filing data and display it on the view
         public async Task<ViewResult> filing(string candidateID)
         {
             Filing filingDetails = dbContext.filings.Where(c => c.candidate_id == candidateID).FirstOrDefault();
@@ -286,6 +304,42 @@ namespace MVC_EF_Start.Controllers
             await dbContext.SaveChangesAsync();
             return View();
         }
-        
+
+        // Delete operation: This deletes financial report from the database
+        public IActionResult Delete(string cond)
+        {
+            var rec = dbContext.results.Where(c => c.committee_id == cond).FirstOrDefault();
+            if (rec != null)
+            {
+                dbContext.results.Remove(rec);
+                dbContext.SaveChanges();
+                TempData["shortMessage"] = "Deleted Successfully";
+            }
+
+            return RedirectToAction("FinancialReport", new { val = cond });
+        }
+
+        // Update operation: This deletes financial report from the database
+        public IActionResult Update(string cond)
+        {
+            var rec = dbContext.results.Where(c => c.committee_id == cond).FirstOrDefault();
+
+            return View(rec);
+        }
+
+        [HttpPost]
+        public IActionResult UpRecord(Result data)
+        {
+            var rec = dbContext.results.FirstOrDefault(x => x.committee_id == data.committee_id);
+
+            if (rec != null)
+            {
+                rec.cash_on_hand_beginning_period = data.cash_on_hand_beginning_period;
+                rec.last_cash_on_hand_end_period = data.last_cash_on_hand_end_period;
+                dbContext.SaveChanges();
+            }
+
+            return RedirectToAction("FinancialReport", new { val = rec.committee_id });
+        }
     }
 }

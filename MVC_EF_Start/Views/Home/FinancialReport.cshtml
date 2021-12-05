@@ -86,9 +86,9 @@
                 <td>@Model.last_cash_on_hand_end_period</td>
                 @using (Html.BeginForm("Delete", "Home", new { cond = Model.committee_id }))
                 {
-                    <td><input type="submit" value="Delete" onclick="return confirm('Are You sure you want to delete @Model.committee_id?');"/></td>
+                    <td><input type="submit" value="Delete" onclick="return confirm('This will delete the report permanently. Are You sure you want to delete the report for @Model.committee_id ?');" /></td>
                 }
-
+                
             </tr>
 
                 }
